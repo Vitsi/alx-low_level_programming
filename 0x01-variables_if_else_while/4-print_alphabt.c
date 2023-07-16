@@ -10,8 +10,8 @@
 
 int main(void){
 	char ch='a';
-	while(ch<=0){
-		if(ch!=q && ch!=e){
+	while(ch<='z'){
+		if(ch!='q' && ch!='e'){
 			putchar(ch);
 			ch++;
 		}

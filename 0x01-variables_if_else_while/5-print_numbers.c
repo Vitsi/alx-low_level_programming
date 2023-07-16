@@ -8,13 +8,16 @@
  * Return: Always 0 (Success)
 */
 
-int main(void){
-	int n;
-	while(n>=0 && n<=9){
-			printf("%i",n);
-			++n;
+int main(void)
+{
+	int digit = 0;
+
+	while (digit <= 9)
+	{
+		printf("%i", digit);
+		++digit;
 	}
-		printf("\n");
+	printf("\n");
 
 	return (0);
 }

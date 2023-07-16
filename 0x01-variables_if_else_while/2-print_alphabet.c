@@ -1,4 +1,4 @@
-#include stdout.h
+#include <stdio.h>
 
 /**
  * main - Entry point
@@ -14,6 +14,6 @@ int (void){
 		++ch;
 	}
 	putchar('\n');
-	return(0);
+	return(0)i;
 }
 
