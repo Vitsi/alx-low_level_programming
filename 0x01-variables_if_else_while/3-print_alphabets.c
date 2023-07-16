@@ -8,19 +8,25 @@
  * Return: Always 0 (Success)
 */
 
-int main(void){
-	char ch='a';
-	char CH='A'; 
+int main(void)
+{
+	char ch = 'a';
+	char CH = 'A';
 
-	while(ch<='z'){
+	/*prints a - z*/
+	while (ch <= 'z')
+	{
 		putchar(ch);
 		++ch;
 	}
-	while(CH<='Z'){
-			putchar(CH);
-			++CH;
+
+	/*print A - Z*/
+	while (CH <= 'Z')
+	{
+		putchar(CH);
+		++CH;
 	}
 	putchar('\n');
 
-	return(0);
+	return (0);
 }
