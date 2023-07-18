@@ -4,14 +4,14 @@
  * main -  prints _putchar, followed by a new line
  * Return: Always 0 (Success)
  */
-int main() {
-   char str[] = "_putchar";
-   int i;
 
-   for(i = 0; str[i] != '\0'; i++) {
-      putchar(str[i]);
-   }
-   putchar('\n');
+int main(void)
+{
+    char str[] = "_putchar\n";
 
-   return 0;
+    char *ptr = str;
+    while (*ptr != '\0')
+        _putchar(*ptr++);
+
+    return (0);
 }
