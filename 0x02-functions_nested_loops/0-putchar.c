@@ -1,12 +1,17 @@
 #include "main.h"
-/**
- *main - print _putchar followed by an empty line
- *return- 0 if successful
-*/
-int main(void)
-{
-	_putchar("_putchar");
-	_putchar('\n');
 
-	return(0);
+/**
+ * main -  prints _putchar, followed by a new line
+ * Return: Always 0 (Success)
+ */
+int main() {
+   char str[] = "_putchar";
+   int i;
+
+   for(i = 0; str[i] != '\0'; i++) {
+      putchar(str[i]);
+   }
+   putchar('\n');
+
+   return 0;
 }
