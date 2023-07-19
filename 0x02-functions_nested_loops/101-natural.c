@@ -13,7 +13,7 @@ int main(void)
 	numF = 5;
 	numB = 1024;
 	sum = 0;
-	
+
 	for (num = 0; num < numB; num++)
 	{
 		if (num % numT == 0 || num % numF == 0)
@@ -24,5 +24,5 @@ int main(void)
 
 	printf("%d\n", sum);
 
-	return 0;
+	return (0);
 }
