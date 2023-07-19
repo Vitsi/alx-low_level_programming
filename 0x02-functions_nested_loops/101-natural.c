@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	int numT, numF, numB, sum;
+	int num, numT, numF, numB, sum;
 
 	numT=3;
 	numF=5;
