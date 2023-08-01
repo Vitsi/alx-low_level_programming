@@ -1,30 +1,35 @@
 #include "main.h"
 
 /**
- * _strncpy - copies a string
- * @dest: destination string
- * @src: source string
- * @n: number of bytes to copy
+ * *_strspn - gets the length of a prefix substring
+ * @s: string to evaluate
+ * @accept: string containing the list of characters to match in s
  *
- * Return: pointer to the resulting string
+ * Return: the number of bytes in the initial segment
+ * of s which consist only of bytes from accept
  */
-char *_strncpy(char *dest, char *src, int n)
+unsigned int _strspn(char *s, char *accept)
 {
-	int i;
+	int i, j, f, flag;
 
-	i = 0;
+	f = 0;
 
-	while (src[i] != '\0' && i < n)
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		dest[i] = src[i];
-		i++;
+		flag = 0;
+		for (j = 0; accept[j] != '\0'; j++)
+		{
+			if (s[i] == accept[j])
+			{
+				f++;
+				flag = 1;
+			}
+		}
+		if (flag == 0)
+		{
+			return (f);
+		}
 	}
 
-	while (i < n)
-	{
-		dest[i] = '\0';
-		i++;
-	}
-
-	return (dest);
+	return (0);
 }

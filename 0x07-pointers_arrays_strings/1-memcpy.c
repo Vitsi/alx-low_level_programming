@@ -1,30 +1,21 @@
 #include "main.h"
 
 /**
- * _strcat - concatenates two strings
- * @dest: string to append to
- * @src: string to add
+ * *_memcpy - copies memory area
+ * @dest: destination memory area
+ * @src: memory area to copy from
+ * @n: number of bytes to copy
  *
- * Return: a pointer to the resulting string
+ * Return: pointer to dest
  */
-char *_strcat(char *dest, char *src)
+char *_memcpy(char *dest, char *src, unsigned int n)
 {
-	int i, j;
+	unsigned int i;
 
-	i = 0;
-	j = 0;
-
-	while (dest[i] != '\0')
-		i++;
-
-	while (src[j] != '\0')
+	for (i = 0; i < n; i++)
 	{
-		dest[i] = src[j];
-		j++;
-		i++;
+		dest[i] = src[i];
 	}
-
-	dest[i] = '\0';
 
 	return (dest);
 }
