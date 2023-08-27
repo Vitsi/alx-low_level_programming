@@ -1,14 +1,13 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 char *argstostr(int ac, char **av)
 {
     if (ac == 0 || av == NULL)
         return NULL;
 
-    int total_length = 0;
-    int i, j;
+    int i, j, total_length = 0, current_index = 0;
+    char *result;
 
     // Calculate the total length of the concatenated string
     for (i = 0; i < ac; i++)
@@ -19,15 +18,12 @@ char *argstostr(int ac, char **av)
             total_length++;
             j++;
         }
-        total_length++; // Account for the newline character
+        total_length++; // Account for the space between arguments
     }
 
-    // Allocate memory for the concatenated string
-    char *concatenated = malloc(sizeof(char) * (total_length + 1));
-    if (concatenated == NULL)
+    result = (char *)malloc(sizeof(char) * (total_length + 1));
+    if (result == NULL)
         return NULL;
-
-    int index = 0;
 
     // Copy the arguments into the concatenated string
     for (i = 0; i < ac; i++)
@@ -35,15 +31,15 @@ char *argstostr(int ac, char **av)
         j = 0;
         while (av[i][j] != '\0')
         {
-            concatenated[index] = av[i][j];
-            index++;
+            result[current_index] = av[i][j];
+            current_index++;
             j++;
         }
-        concatenated[index] = '\n'; // Add the newline character
-        index++;
+        result[current_index] = ' '; // Insert space between arguments
+        current_index++;
     }
 
-    concatenated[index] = '\0'; // Add the null terminator
+    result[current_index - 1] = '\0'; // Replace the last space with null terminator
 
-    return concatenated;
+    return result;
 }
