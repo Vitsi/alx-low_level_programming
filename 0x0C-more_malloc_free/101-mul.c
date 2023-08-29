@@ -1,91 +1,99 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include "main.h"
 
-int _isdigit(char c)
+/**
+ * is_digit - checks if a string contains a non-digit char
+ * @s: string to be evaluated
+ *
+ * Return: 0 if a non-digit is found, 1 otherwise
+ */
+int is_digit(char *s)
 {
-    return c >= '0' && c <= '9';
+	int i = 0;
+
+	while (s[i])
+	{
+		if (s[i] < '0' || s[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int _strlen(char *str)
+/**
+ * _strlen - returns the length of a string
+ * @s: string to evaluate
+ *
+ * Return: the length of the string
+ */
+int _strlen(char *s)
 {
-    int len = 0;
-    while (str[len] != '\0')
-        len++;
-    return len;
+	int i = 0;
+
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }
 
-void _print_error(void)
+/**
+ * errors - handles errors for main
+ */
+void errors(void)
 {
-    printf("Error\n");
-    exit(98);
+	printf("Error\n");
+	exit(98);
 }
 
-void _multiply(char *num1, char *num2)
-{
-    int len1 = _strlen(num1);
-    int len2 = _strlen(num2);
-    int len_result = len1 + len2;
-    int *result = calloc(len_result, sizeof(int));
-
-    if (result == NULL)
-        _print_error();
-
-    for (int i = len1 - 1; i >= 0; i--)
-    {
-        for (int j = len2 - 1; j >= 0; j--)
-        {
-            int digit1 = num1[i] - '0';
-            int digit2 = num2[j] - '0';
-            int product = digit1 * digit2;
-
-            int pos1 = i + j;
-            int pos2 = i + j + 1;
-
-            product += result[pos2];
-
-            result[pos1] += product / 10;
-            result[pos2] = product % 10;
-        }
-    }
-
-    int non_zero_found = 0;
-    for (int i = 0; i < len_result; i++)
-    {
-        if (result[i] != 0)
-            non_zero_found = 1;
-        if (non_zero_found)
-            printf("%d", result[i]);
-    }
-
-    printf("\n");
-
-    free(result);
-}
-
+/**
+ * main - multiplies two positive numbers
+ * @argc: number of arguments
+ * @argv: array of arguments
+ *
+ * Return: always 0 (Success)
+ */
 int main(int argc, char *argv[])
 {
-    if (argc != 3)
-        _print_error();
+	char *s1, *s2;
+	int len1, len2, len, i, carry, digit1, digit2, *result, a = 0;
 
-    char *num1 = argv[1];
-    char *num2 = argv[2];
-
-    int len1 = _strlen(num1);
-    int len2 = _strlen(num2);
-
-    for (int i = 0; i < len1; i++)
-    {
-        if (!_isdigit(num1[i]))
-            _print_error();
-    }
-
-    for (int i = 0; i < len2; i++)
-    {
-        if (!_isdigit(num2[i]))
-            _print_error();
-    }
-
-    _multiply(num1, num2);
-
-    return 0;
+	s1 = argv[1], s2 = argv[2];
+	if (argc != 3 || !is_digit(s1) || !is_digit(s2))
+		errors();
+	len1 = _strlen(s1);
+	len2 = _strlen(s2);
+	len = len1 + len2 + 1;
+	result = malloc(sizeof(int) * len);
+	if (!result)
+		return (1);
+	for (i = 0; i <= len1 + len2; i++)
+		result[i] = 0;
+	for (len1 = len1 - 1; len1 >= 0; len1--)
+	{
+		digit1 = s1[len1] - '0';
+		carry = 0;
+		for (len2 = _strlen(s2) - 1; len2 >= 0; len2--)
+		{
+			digit2 = s2[len2] - '0';
+			carry += result[len1 + len2 + 1] + (digit1 * digit2);
+			result[len1 + len2 + 1] = carry % 10;
+			carry /= 10;
+		}
+		if (carry > 0)
+			result[len1 + len2 + 1] += carry;
+	}
+	for (i = 0; i < len - 1; i++)
+	{
+		if (result[i])
+			a = 1;
+		if (a)
+			_putchar(result[i] + '0');
+	}
+	if (!a)
+		_putchar('0');
+	_putchar('\n');
+	free(result);
+	return (0);
 }
