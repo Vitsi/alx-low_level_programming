@@ -4,7 +4,8 @@
 #include <ctype.h>
 #include <string.h>
 
-char *_strcat(char *dest, char *src)
+char *_strchr(char *s, char c)
 {
-    return strcat(dest, src);
+    return strchr(s, c);
 }
+

@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <string.h>
 
-char *_strcat(char *dest, char *src)
+int _isdigit(int c)
 {
-    return strcat(dest, src);
+    return isdigit(c);
 }

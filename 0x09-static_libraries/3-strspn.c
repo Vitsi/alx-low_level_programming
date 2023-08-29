@@ -4,7 +4,8 @@
 #include <ctype.h>
 #include <string.h>
 
-char *_strcat(char *dest, char *src)
+unsigned int _strspn(char *s, char *accept)
 {
-    return strcat(dest, src);
+    return strspn(s, accept);
 }
+
